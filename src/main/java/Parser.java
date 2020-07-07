@@ -18,19 +18,13 @@ public class Parser {
         TelegramBotsApi botsApi = new TelegramBotsApi();
         botsApi.registerBot(new EchoBot());
     }
-}
 
-//       Document doc = Jsoup.connect("https://www.anekdot.ru").get();
-//
-//        Elements text = doc.getElementsByClass("text");
-//      int i =0;
-//        for (Element x:text) {
-//            if(i<5){
-//                System.out.println(x.text());
-//                System.out.println();
-//                i++;
-//            }
-//        }
+
+
+
+
+    }
+
 
 
 

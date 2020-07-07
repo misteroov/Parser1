@@ -1,14 +1,31 @@
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.io.IOException;
+
 /**
  * Класс-обработчик поступающих к боту сообщений.
  */
 public class EchoBot extends TelegramLongPollingBot {
+    Document doc;
+
+    {
+        try {
+            doc = Jsoup.connect("https://www.anekdot.ru").get();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    Element text = doc.getElementsByClass("text").first();
+
     /**
      * Метод, который возвращает токен, выданный нам ботом @BotFather.
      * @return токен
@@ -35,7 +52,7 @@ public class EchoBot extends TelegramLongPollingBot {
                 //(в тот же чат, откуда пришло входящее сообщение)
                 outMessage.setChatId(inMessage.getChatId());
                 //Указываем текст сообщения
-                outMessage.setText(inMessage.getText());
+                outMessage.setText(text.text());
                 //Отправляем сообщение
                 execute(outMessage);
             }
