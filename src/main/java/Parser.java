@@ -17,6 +17,7 @@ public class Parser {
 
         TelegramBotsApi botsApi = new TelegramBotsApi();
         botsApi.registerBot(new EchoBot());
+
     }
 
 
