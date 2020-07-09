@@ -50,10 +50,15 @@ public class EchoBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
       String message = t;
-      sendMsg(update.getMessage().getChatId().toString(), message);
+
+      if (!update.getMessage().toString().equals("/start")){
+          sendMsg(update.getMessage().getChatId().toString(), message);
+      }
     }
     public synchronized void sendMsg(String chatId, String s){
         SendMessage sendMessage = new SendMessage();
+        Message mess = new Message();
+
         sendMessage.enableMarkdown(true);
         sendMessage.setChatId(chatId);
         sendMessage.setText(s);
