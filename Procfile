@@ -1,1 +1,1 @@
-web: java -jar $JAVA_OPTS -Dserver.port=$PORT target/Parser1-1.0-SNAPSHOT.jar
+worker: sh target/bin/misteroovbot
