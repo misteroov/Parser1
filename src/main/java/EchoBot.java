@@ -40,7 +40,7 @@ public class EchoBot extends TelegramLongPollingBot {
      */
     @Override
     public String getBotToken() {
-        return "1247359097:AAEWChzBVltUJbTL9KvOfUUed3nmmVptNcY";
+        return System.getenv("token");
     }
 
     /**
@@ -97,6 +97,6 @@ public class EchoBot extends TelegramLongPollingBot {
      */
     @Override
     public String getBotUsername() {
-        return "Misteroov_bot";
+        return System.getenv("name");
     }
 }
