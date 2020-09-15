@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 public class Solution {
-    public static   Map<Integer, String> map = new HashMap<Integer, String>();
+    public static   Map<Integer, String> map = new HashMap<>();
     static {
         map.put(0, "ноль");
         map.put(1, "один");
@@ -18,9 +18,9 @@ public class Solution {
         map.put(12, "двенадцать");
     }
     public static void main(String[] args) throws IOException {
-        Scanner scan = new Scanner(System.in);
-        String fileName = scan.nextLine();
-        scan.close();
+        BufferedReader rederFile = new BufferedReader(new InputStreamReader(System.in));
+        String fileName = rederFile.readLine();
+        rederFile.close();
         BufferedReader reader = new BufferedReader(new FileReader(fileName));
         String s;
 
