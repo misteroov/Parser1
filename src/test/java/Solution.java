@@ -1,50 +1,37 @@
-import java.io.*;
-import java.util.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
 public class Solution {
-    public static   Map<Integer, String> map = new HashMap<>();
-    static {
-        map.put(0, "ноль");
-        map.put(1, "один");
-        map.put(2, "два");
-        map.put(3, "три");
-        map.put(4, "четыре");
-        map.put(5, "пять");
-        map.put(6, "шесть");
-        map.put(7, "семь");
-        map.put(8, "восемь");
-        map.put(9, "девять");
-        map.put(10, "десять");
-        map.put(11, "одиннадцать");
-        map.put(12, "двенадцать");
+    public static TestString testString = new TestString();
+
+    public static void main(String[] args) {
+
+
+        PrintStream consoleStream = System.out;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        PrintStream stream = new PrintStream(outputStream);
+        System.setOut(stream);
+        testString.printSomething();
+        String result = outputStream.toString();
+        String[] resArr = result.split("\\r\\n");
+
+        System.setOut(consoleStream);
+
+        for (int i = 0; i < resArr.length; i++) {
+            System.out.println(resArr[i]);
+            if (i % 2 != 0)
+                System.out.println("JavaRush - курсы Java онлайн");
+        }
     }
-    public static void main(String[] args) throws IOException {
-        BufferedReader rederFile = new BufferedReader(new InputStreamReader(System.in));
-        String fileName = rederFile.readLine();
-        rederFile.close();
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
-        String s;
 
-        while ((s=reader.readLine())!=null) {
-            String[] array = s.split(" ");
-            for (int i = 0; i < array.length; i++) {
-                try {
-                    int x = Integer.parseInt(array[i]);
-                    if (x>=0&&x<=12) {
-                        String newValue = map.get(x);
-                        array[i] = newValue;
-                    }
-                } catch (NumberFormatException w) {
 
-                }
-            }
-
-            for (String xx:array){
-                System.out.print(xx+" ");
-            }
-
-        } reader.close();
+    public static class TestString {
+        public void printSomething() {
+            System.out.println("first");
+            System.out.println("second");
+            System.out.println("third");
+            System.out.println("fourth");
+            System.out.println("fifth");
+        }
     }
 }
-
-
-
