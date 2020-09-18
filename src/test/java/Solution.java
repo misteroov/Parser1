@@ -21,9 +21,9 @@ public class Solution {
         BufferedReader fr = new BufferedReader(new FileReader(fileName));
         String s;
         while ((s=fr.readLine())!=null){
-            if (s.matches(".*\\b"+words.get(0)+"\\b.*")&&s.matches(".*\\b"+words.get(1)+"\\b.*")||s.matches(".*\\b"+words.get(1)+"\\b.*")
-                    &&s.matches(".*\\b"+words.get(2)+"\\b.*")||
-                    s.matches(".*\\b"+words.get(0)+"\\b.*")&&s.matches(".*\\b"+words.get(2)+"\\b.*"))
+            if ((s.matches(".*\\b"+words.get(0)+"\\b.*")&&s.matches(".*\\b"+words.get(1)+"\\b.*"))||(s.matches(".*\\b"+words.get(1)+"\\b.*")
+                    &&s.matches(".*\\b"+words.get(2)+"\\b.*"))||
+                    (s.matches(".*\\b"+words.get(0)+"\\b.*")&&s.matches(".*\\b"+words.get(2)+"\\b.*")))
                 System.out.println(s);
         }
         fr.close();
