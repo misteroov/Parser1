@@ -7,7 +7,7 @@ public class Solution {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(args[0]));
-        FileWriter fw = new FileWriter(args[1],true);
+        BufferedWriter fw = new BufferedWriter(new FileWriter(args[1]));
         String s;
         while ((s = br.readLine()) != null) {
 
