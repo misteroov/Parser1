@@ -1,39 +1,25 @@
-
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Solution {
-    public static List<String>words = new ArrayList<String>();
-    static {
-        words.add("файл");
-        words.add("вид");
-        words.add("В");
 
-    }
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String fileName = reader.readLine();
-        reader.close();
-        BufferedReader fr = new BufferedReader(new FileReader(fileName));
+
+        BufferedReader br = new BufferedReader(new FileReader(args[0]));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(args[1], true));
         String s;
-        String [] arrayString;
-        int count = 0;
-        while ((s=fr.readLine())!=null){
-           arrayString = s.split(" ");
-           for (String s1:words){
-               for (int i = 0; i <arrayString.length ; i++) {
-                   if (s1.equals(arrayString[i]))
-                       count++;
-               }
-           }
-           if (count==2)
-               System.out.println(s);
-           count=0;
+        while ((s = br.readLine()) != null) {
+
+            Pattern p = Pattern.compile("((([a-zA-ZА-Яа-я]+\\d)|(\\d+[a-zA-ZА-Яа-я]+))[a-zA-ZА-Яа-я\\d]*)");
+
+            Matcher m = p.matcher(s);
+            while (m.find()) {
+                String temp =m.group()+" ";
+                bw.write(temp);
+            }
         }
-        fr.close();
+        br.close();
+        bw.close();
     }
 }
