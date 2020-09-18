@@ -20,11 +20,19 @@ public class Solution {
         reader.close();
         BufferedReader fr = new BufferedReader(new FileReader(fileName));
         String s;
+        String [] arrayString;
+        int count = 0;
         while ((s=fr.readLine())!=null){
-            if ((s.matches(".*\\b"+words.get(0)+"\\b.*")&&s.matches(".*\\b"+words.get(1)+"\\b.*"))||(s.matches(".*\\b"+words.get(1)+"\\b.*")
-                    &&s.matches(".*\\b"+words.get(2)+"\\b.*"))||
-                    (s.matches(".*\\b"+words.get(0)+"\\b.*")&&s.matches(".*\\b"+words.get(2)+"\\b.*")))
-                System.out.println(s);
+           arrayString = s.split(" ");
+           for (String s1:words){
+               for (int i = 0; i <arrayString.length ; i++) {
+                   if (s1.equals(arrayString[i]))
+                       count++;
+               }
+           }
+           if (count==2)
+               System.out.println(s);
+           count=0;
         }
         fr.close();
     }
