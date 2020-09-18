@@ -7,7 +7,7 @@ public class Solution {
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new FileReader(args[0]));
-        BufferedWriter bw = new BufferedWriter(new FileWriter(args[1], true));
+        FileWriter fw = new FileWriter(args[1],true);
         String s;
         while ((s = br.readLine()) != null) {
 
@@ -16,10 +16,11 @@ public class Solution {
             Matcher m = p.matcher(s);
             while (m.find()) {
                 String temp =m.group()+" ";
-                bw.write(temp);
+
+                fw.write(temp);
             }
         }
         br.close();
-        bw.close();
+        fw.close();
     }
 }
