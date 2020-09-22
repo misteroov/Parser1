@@ -1,26 +1,47 @@
-import java.io.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class Solution {
 
-    public static void main(String[] args) throws IOException {
+import java.io.FileWriter;
+import java.io.IOException;
 
-        BufferedReader br = new BufferedReader(new FileReader(args[0]));
-        BufferedWriter fw = new BufferedWriter(new FileWriter(args[1]));
-        String s;
-        while ((s = br.readLine()) != null) {
+public class FileConsoleWriter {
+    private FileWriter fileWriter;
 
-            Pattern p = Pattern.compile("((([a-zA-ZА-Яа-я]+\\d)|(\\d+[a-zA-ZА-Яа-я]+))[a-zA-ZА-Яа-я\\d]*)");
+    public void write(int c) throws IOException {
+        fileWriter.write(c);
+        System.out.println(c);
+    }
 
-            Matcher m = p.matcher(s);
-            while (m.find()) {
-                String temp =m.group()+" ";
-
-                fw.write(temp);
-            }
+    public void write(char[] cbuf, int off, int len) throws IOException {
+        fileWriter.write(cbuf, off, len);
+        for (int i = off; i <len ; i++) {
+            System.out.println(cbuf[i]);
         }
-        br.close();
-        fw.close();
+
+    }
+
+
+    public void close() throws IOException {
+        fileWriter.close();
+    }
+
+    public void write(char[] cbuf) throws IOException {
+        fileWriter.write(cbuf);
+        for (char c:cbuf){
+            System.out.println(c);
+        }
+
+    }
+
+    public void write(String str) throws IOException {
+        fileWriter.write(str);
+        System.out.println(str);
+    }
+    public void write(String str,int off,int len) throws IOException{
+        fileWriter.write(str,off,len);
+        System.out.println(str.subSequence(off,len));
+    }
+
+    public static void main(String[] args) {
+
     }
 }
