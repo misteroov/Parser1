@@ -1,4 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Solution {
     public static void main(String[] args) throws IOException {
@@ -6,18 +8,22 @@ public class Solution {
         BufferedWriter writter = new BufferedWriter(new FileWriter(args[1]));
         String s;
         String[] arrayStrings;
+        List<String> list = new ArrayList<String>();
         while ((s = reader.readLine()) != null) {
-            s = s.replaceAll("\\b\\w{1,6}\\b", " ");
-            s.trim();
             arrayStrings = s.split(" ");
-            for (int i = 0; i < arrayStrings.length; i++) {
-                if (i!=arrayStrings.length-1&&arrayStrings[i].length()>6)
-                    writter .write(arrayStrings[i]+",");
-                else if (i==arrayStrings.length-1&&arrayStrings[i].length()>6)
-                    writter .write(arrayStrings[i]);
+            for (String z:arrayStrings){
+                if (z.length()>6)
+                    list.add(z);
             }
+        }
+        for (int i = 0; i < list.size(); i++) {
+            if (i!=list.size()-1)
+                System.out.print(list.get(i)+",");
+            else System.out.print(list.get(i));
 
-                }
+        }
+
+
         reader.close();
         writter.close();
             }
