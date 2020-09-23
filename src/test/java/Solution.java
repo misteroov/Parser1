@@ -7,7 +7,7 @@ public class Solution {
         String s;
         String[] arrayStrings;
         while ((s = reader.readLine()) != null) {
-            s = s.replaceAll("\\b\\w{1,6}\\b", "");
+            s = s.replaceAll("\\b\\w{1,6}\\b", " ");
             s.trim();
             arrayStrings = s.split(" ");
             for (int i = 0; i < arrayStrings.length; i++) {
