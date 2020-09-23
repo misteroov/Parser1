@@ -36,7 +36,7 @@ public class FileConsoleWriter {
     public void write(char[] cbuf, int off, int len) throws IOException {
         fileWriter.write(cbuf, off, len);
         for (int i = off; i <len ; i++) {
-            System.out.println(cbuf[i]);
+            System.out.print(cbuf[i]);
         }
 
     }
@@ -49,7 +49,7 @@ public class FileConsoleWriter {
     public void write(char[] cbuf) throws IOException {
         fileWriter.write(cbuf);
         for (char c:cbuf){
-            System.out.println(c);
+            System.out.print(c);
         }
 
     }
@@ -63,7 +63,7 @@ public class FileConsoleWriter {
         System.out.println(str.subSequence(off,len));
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
     }
 }
