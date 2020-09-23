@@ -1,24 +1,31 @@
 
 
+import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileConsoleWriter {
     private FileWriter fileWriter;
 
-    public FileConsoleWriter(int c)throws IOException {
-       fileWriter.write(c);
-    } public FileConsoleWriter(char[] cbuf, int off, int len)throws IOException {
-        fileWriter.write(cbuf, off, len);
+    public FileConsoleWriter(String fileName) throws IOException {
+               fileWriter = new FileWriter(fileName);
     }
-    public FileConsoleWriter(char[] cbuf)throws IOException {
-        fileWriter.write(cbuf);
+
+    public FileConsoleWriter(String fileName, boolean append) throws IOException {
+        fileWriter = new FileWriter(fileName,append);
     }
-    public FileConsoleWriter(String str)throws IOException {
-        fileWriter.write(str);
+
+    public FileConsoleWriter(File file) throws IOException {
+        fileWriter = new FileWriter(file);
     }
-    public FileConsoleWriter(String str,int off,int len)throws IOException {
-        fileWriter.write(str,off,len);
+
+    public FileConsoleWriter(File file, boolean append) throws IOException {
+        fileWriter = new FileWriter(file,append);
+    }
+
+    public FileConsoleWriter(FileDescriptor fd) {
+        fileWriter = new FileWriter(fd);
     }
 
     public void write(int c) throws IOException {
