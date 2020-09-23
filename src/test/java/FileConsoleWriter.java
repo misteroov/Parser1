@@ -6,6 +6,21 @@ import java.io.IOException;
 public class FileConsoleWriter {
     private FileWriter fileWriter;
 
+    public FileConsoleWriter(int c)throws IOException {
+       fileWriter.write(c);
+    } public FileConsoleWriter(char[] cbuf, int off, int len)throws IOException {
+        fileWriter.write(cbuf, off, len);
+    }
+    public FileConsoleWriter(char[] cbuf)throws IOException {
+        fileWriter.write(cbuf);
+    }
+    public FileConsoleWriter(String str)throws IOException {
+        fileWriter.write(str);
+    }
+    public FileConsoleWriter(String str,int off,int len)throws IOException {
+        fileWriter.write(str,off,len);
+    }
+
     public void write(int c) throws IOException {
         fileWriter.write(c);
         System.out.println(c);
