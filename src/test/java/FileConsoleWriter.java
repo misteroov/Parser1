@@ -9,11 +9,11 @@ public class FileConsoleWriter {
     private FileWriter fileWriter;
 
     public FileConsoleWriter(String fileName) throws IOException {
-               fileWriter = new FileWriter(fileName);
+        fileWriter = new FileWriter(fileName);
     }
 
     public FileConsoleWriter(String fileName, boolean append) throws IOException {
-        fileWriter = new FileWriter(fileName,append);
+        fileWriter = new FileWriter(fileName, append);
     }
 
     public FileConsoleWriter(File file) throws IOException {
@@ -21,7 +21,7 @@ public class FileConsoleWriter {
     }
 
     public FileConsoleWriter(File file, boolean append) throws IOException {
-        fileWriter = new FileWriter(file,append);
+        fileWriter = new FileWriter(file, append);
     }
 
     public FileConsoleWriter(FileDescriptor fd) {
@@ -35,7 +35,7 @@ public class FileConsoleWriter {
 
     public void write(char[] cbuf, int off, int len) throws IOException {
         fileWriter.write(cbuf, off, len);
-        for (int i = off; i <len ; i++) {
+        for (int i = off; i < off + len; i++) {
             System.out.print(cbuf[i]);
         }
 
@@ -48,7 +48,7 @@ public class FileConsoleWriter {
 
     public void write(char[] cbuf) throws IOException {
         fileWriter.write(cbuf);
-        for (char c:cbuf){
+        for (char c : cbuf) {
             System.out.print(c);
         }
 
@@ -58,9 +58,12 @@ public class FileConsoleWriter {
         fileWriter.write(str);
         System.out.println(str);
     }
-    public void write(String str,int off,int len) throws IOException{
-        fileWriter.write(str,off,len);
-        System.out.println(str.subSequence(off,len));
+
+    public void write(String str, int off, int len) throws IOException {
+        fileWriter.write(str, off, len);
+
+        System.out.print(str.substring(off, off + len));
+
     }
 
     public static void main(String[] args) throws IOException {
