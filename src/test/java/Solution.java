@@ -18,8 +18,8 @@ public class Solution {
         }
         for (int i = 0; i < list.size(); i++) {
             if (i!=list.size()-1)
-                System.out.print(list.get(i)+",");
-            else System.out.print(list.get(i));
+               writter.write (list.get(i)+",");
+            else   writter.write(list.get(i));
 
         }
 
