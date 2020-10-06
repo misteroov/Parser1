@@ -19,9 +19,7 @@ public class Solution {
         try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             FileInputStream fos =new FileInputStream(reader.readLine())){
             load(fos);
-        }catch (IOException e){
-            e.printStackTrace();
-        } catch (Exception e) {
+        }catch (Exception e){
             e.printStackTrace();
         }
         System.out.println(runtimeStorage);
