@@ -1,35 +1,30 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Properties;
 
 public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(args[0]));
-        BufferedWriter writter = new BufferedWriter(new FileWriter(args[1]));
-        String s;
-        String[] arrayStrings;
-        List<String> list = new ArrayList<String>();
-        while ((s = reader.readLine()) != null) {
-            arrayStrings = s.split(" ");
-            for (String z:arrayStrings){
-                if (z.length()>6)
-                    list.add(z);
-            }
+    public static Map<String,String> runtimeStorage = new HashMap<>();
+    public static Properties p=new Properties();
+    public static void save(OutputStream outputStream) throws Exception{
+        p.putAll(runtimeStorage);
+        p.store(outputStream,null);
+    }
+    public static void load (InputStream inputStream) throws Exception{
+        p.load(inputStream);
+        runtimeStorage=new HashMap(p);
+    }
+
+    public static void main(String[] args) {
+        try(BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            FileInputStream fos =new FileInputStream(reader.readLine())){
+            load(fos);
+        }catch (IOException e){
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        for (int i = 0; i < list.size(); i++) {
-            if (i!=list.size()-1)
-               writter.write (list.get(i)+",");
-            else   writter.write(list.get(i));
+        System.out.println(runtimeStorage);
 
-        }
-
-
-        reader.close();
-        writter.close();
-            }
-        }
-
-
-
-
-
+    }
+}
