@@ -1,36 +1,55 @@
-import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-
-public class Solution {
-    public static Map<String, String> runtimeStorage = new HashMap<>();
-
-
-    public static void save(OutputStream outputStream) throws Exception {
-        Properties p = new Properties();
-        p.putAll(runtimeStorage);
-        p.store(outputStream, null);
-    }
-
-    public static void load(InputStream inputStream) throws Exception {
-        Properties p = new Properties();
-        p.load(inputStream);
-        runtimeStorage = new HashMap(p);
-    }
-
-    public static void main(String[] args) {
-
-        try (BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-             FileInputStream fos = new FileInputStream(reader.readLine())) {
-
-
-                load(fos);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            System.out.println(runtimeStorage);
-
-        }
-    }
-
+import java.io.*;                                                  
+                                                  
+/*                                                   
+Как сериализовать Singleton?                                                  
+*/                                                  
+public class Solution implements Serializable {                                                  
+    public static void main(String[] args) throws IOException, ClassNotFoundException {                                                  
+        Singleton instance = Singleton.getInstance();                                                  
+                                                  
+        ByteArrayOutputStream byteArrayOutputStream = serializeSingletonInstance(instance);                                                  
+                                                  
+        Singleton singleton = deserializeSingletonInstance(byteArrayOutputStream);                                                  
+        Singleton singleton1 = deserializeSingletonInstance(byteArrayOutputStream);                                                  
+                                                  
+        System.out.println("Проверка ourInstance : " + singleton.getInstance());                                                  
+        System.out.println("Проверка ourInstance : " + singleton1.getInstance());                                                  
+        System.out.println("=========================================================");                                                  
+        System.out.println("Проверка singleton : " + singleton);                                                  
+        System.out.println("Проверка singleton1 : " + singleton1);                                                  
+    }                                                  
+                                                  
+    public static ByteArrayOutputStream serializeSingletonInstance(Singleton instance) throws IOException {                                                  
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();                                                  
+                                                  
+        ObjectOutputStream oos = new ObjectOutputStream(byteArrayOutputStream);                                                  
+        oos.writeObject(instance);                                                  
+        oos.close();                                                  
+                                                  
+        return byteArrayOutputStream;                                                  
+    }                                                  
+                                                  
+    public static Singleton deserializeSingletonInstance(ByteArrayOutputStream byteArrayOutputStream) throws IOException, ClassNotFoundException {                                                  
+        ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());                                                  
+                                                  
+        ObjectInputStream ois = new ObjectInputStream(byteArrayInputStream);                                                  
+        Singleton singleton = (Singleton) ois.readObject();                                                  
+        ois.close();                                                  
+                                                  
+        return singleton;                                                  
+    }                                                  
+                                                  
+    public static class Singleton implements Serializable {                                                  
+        private static Singleton ourInstance;                                                  
+                                                  
+        public static Singleton getInstance() {                                                  
+            if (ourInstance == null) {                                                  
+                ourInstance = new Singleton();                                                  
+            }                                                  
+            return ourInstance;                                                  
+        }                                                  
+                                                  
+        private Singleton() {                                                  
+        }                                                  
+    }                                                  
+}                                    
